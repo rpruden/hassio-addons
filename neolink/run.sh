@@ -12,7 +12,7 @@ echo "neolink mode: ${MODE}"
 echo "ATTENTION: if you expected a newer Neolink version, please reinstall this Add-on!"
 echo "--- Neolink ---"
 if [ "${MODE}" == "dual" ]; then
-    neolink rtsp --config /config/addons/neolink.toml & neolink mqtt --config /config/addons/neolink.toml & neolink image --config /config/addons/neolink.toml --file-path=/config/www/snapshots/livingroom.jpg livingroom & neolink image --config /config/addons/neolink.toml --file-path=/config/www/snapshots/masterbed.jpg masterbed & wait -n
+    neolink rtsp --config /config/addons/neolink.toml & neolink mqtt --config /config/addons/neolink.toml & wait -n
 else
-    neolink ${MODE} --config /config/addons/neolink.toml & neolink image --config /config/addons/neolink.toml --file-path=/config/www/snapshots/livingroom.jpg livingroom & neolink image --config /config/addons/neolink.toml --file-path=/config/www/snapshots/masterbed.jpg masterbed & wait -n
+    neolink ${MODE} --config /config/addons/neolink.toml
 fi
