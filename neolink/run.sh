@@ -11,4 +11,8 @@ echo -n "neolink version: " && neolink --version
 echo "neolink mode: ${MODE}"
 echo "ATTENTION: if you expected a newer Neolink version, please reinstall this Add-on!"
 echo "--- Neolink ---"
-neolink ${MODE} --config /config/addons/neolink.toml
+if [ "${MODE}" == "dual" ]; then
+    neolink rtsp --config /config/addons/neolink.toml & neolink mqtt --config /config/addons/neolink.toml & wait -n
+else
+    neolink ${MODE} --config /config/addons/neolink.toml
+fi
