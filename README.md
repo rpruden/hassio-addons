@@ -7,5 +7,3 @@
 This repository contains the following add-ons
 
 ### [Neolink](./neolink)
-
-### [Resol-VBus](./resol-vbus)
