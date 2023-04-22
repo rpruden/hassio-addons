@@ -16,3 +16,5 @@ if [ "${MODE}" == "dual" ]; then
 else
     neolink ${MODE} --config /config/addons/neolink.toml
 fi
+neolink image --config /config/addons/neolink.toml --file-path=/config/www/snapshots/livingroom.jpg livingroom
+neolink image --config /config/addons/neolink.toml --file-path=/config/www/snapshots/masterbed.jpg masterbed
