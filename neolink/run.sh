@@ -17,7 +17,7 @@ else
     neolink ${MODE} --config /config/addons/neolink.toml &
     {
         while true; do
-            neolink image --config /config/addons/neolink.toml /config/addons/livingroom.jpg livingroom;
+            neolink image --config /config/addons/neolink.toml --file-path /config/addons/livingroom.jpg livingroom;
             sleep $((10 * 60));
         done;
     } & wait -n
