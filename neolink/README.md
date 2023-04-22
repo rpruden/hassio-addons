@@ -12,7 +12,7 @@ This add-on allows you to run Neolink directly on your HAOS instance. If you don
 
 ## Installation & Configuration
 
-[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fdm82m%2Fhassio-addons)
+[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Frpruden%2Fhassio-addons)
 
 1. Install this add-on in your HAOS instance.
 2. The operating mode of Neolink defaults to `RTSP`. If you prefer `MQTT`, please change it within the add-on configuration.
