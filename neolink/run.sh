@@ -19,12 +19,12 @@ else
         while true; do
             ls /tmp/;
             touch /tmp/placeholder.file;
-            ls /tmp/;
+            ls /config/;
+            ls /config/snaps/;
+            touch /config/snaps/placeholder2.file;
             ls /tmp/neolink/;
-            touch /tmp/neolink/placeholder2.file;
-            ls /tmp/neolink/;
-            neolink image --config /config/addons/neolink.toml --file-path /tmp/masterbed.jpg masterbed;
-            neolink image --config /config/addons/neolink.toml --file-path /tmp/neolink/livingroom.jpg livingroom;
+            neolink image --config /config/addons/neolink.toml --file-path /config/snaps/masterbed.jpg masterbed;
+            neolink image --config /config/addons/neolink.toml --file-path /config/snaps/livingroom.jpg livingroom;
             sleep $((10));
         done;
     } & wait -n
