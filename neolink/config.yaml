@@ -10,10 +10,10 @@ arch:
   - i386
   - armv7
 ports:
-  8554/tcp: 8554
+  19554/tcp: 19554
 map:
   - config:rw
 options:
-  mode: rtsp
+  mode: mqtt
 schema:
   mode: list(rtsp|mqtt|dual)
