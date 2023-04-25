@@ -12,8 +12,7 @@ arch:
 ports:
   8554/tcp: 8554
 map:
-  - config
-  - config/snaps:rw
+  - config:rw
 options:
   mode: rtsp
 schema:
