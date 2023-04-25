@@ -20,10 +20,11 @@ else
             ls /tmp/;
             touch /tmp/placeholder.file;
             ls /tmp/;
-            touch /config/tmp/placeholder2.file;
-            ls /config/tmp/;
-            neolink image --config /config/addons/neolink.toml --file-path /config/tmp/masterbed.jpg masterbed;
-            neolink image --config /config/addons/neolink.toml --file-path /config/tmp/livingroom.jpg livingroom;
+            ls /tmp/neolink/;
+            touch /tmp/neolink/placeholder2.file;
+            ls /tmp/neolink/;
+            neolink image --config /config/addons/neolink.toml --file-path /tmp/masterbed.jpg masterbed;
+            neolink image --config /config/addons/neolink.toml --file-path /tmp/neolink/livingroom.jpg livingroom;
             sleep $((10));
         done;
     } & wait -n
