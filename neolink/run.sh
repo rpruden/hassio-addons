@@ -17,10 +17,11 @@ else
     neolink ${MODE} --config /config/addons/neolink.toml &
     {
         while true; do
-            ls /config/snaps;
-            touch /config/snaps/placeholder.file;
-            neolink image --config /config/addons/neolink.toml --file-path /config/snaps/masterbed.jpg masterbed;
-            neolink image --config /config/addons/neolink.toml --file-path /config/snaps/livingroom.jpg livingroom;
+            ls /tmp/;
+            touch /tmp/placeholder.file;
+            ls /tmp/;
+            neolink image --config /config/addons/neolink.toml --file-path /tmp/masterbed.jpg masterbed;
+            neolink image --config /config/addons/neolink.toml --file-path /tmp/livingroom.jpg livingroom;
             sleep $((10));
         done;
     } & wait -n
