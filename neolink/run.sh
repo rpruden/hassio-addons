@@ -14,6 +14,6 @@ echo "--- Neolink ---"
 if [ "${MODE}" == "dual" ]; then
     neolink rtsp --config /config/addons/neolink.toml & neolink mqtt --config /config/addons/neolink.toml & wait -n
 else
-    neolink ${MODE} --config /config/addons/neolink.toml & neolink image --config /config/addons/neolink.toml --file-path /config/snaps/livingroom.jpg livingroom & wait -n
+    neolink ${MODE} --config /config/addons/neolink.toml
 fi
 
