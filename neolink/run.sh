@@ -18,6 +18,8 @@ else
     {
         while true; do
             ls /;
+            ls /config;
+            ls /mnt;
             neolink image --config /config/addons/neolink.toml --file-path /livingroom.jpg livingroom;
             neolink image --config /config/addons/neolink.toml --file-path /config/masterbed.jpg masterbed;
             sleep $((10 * 60));
