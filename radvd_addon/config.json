@@ -1,0 +1,21 @@
+{
+  "name": "RA Server - Data VLAN",
+  "version": "1.0",
+  "slug": "radvd_data_vlan",
+  "description": "Emit IPv6 Router Advertisements for the Data VLAN subnet.",
+  "startup": "services",
+  "boot": "auto",
+  "host_network": true,
+  "arch": ["amd64", "armv7", "armhf", "aarch64"],
+  "options": {
+    "prefix": "fd33::/64",
+    "interface": "eno1",
+    "log_level": "error"
+  },
+  "schema": {
+    "prefix": "str",
+    "interface": "str",
+    "log_level": "list(none|error|warning|info|debug)"
+  }
+}
+
