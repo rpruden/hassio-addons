@@ -36,6 +36,7 @@ interface ${INTERFACE} {
   prefix ${PREFIX} {
     AdvOnLink on;
     AdvAutonomous on;
+    AdvStableFlag on;
   };
 };
 EOF
