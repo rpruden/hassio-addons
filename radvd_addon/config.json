@@ -1,21 +1,30 @@
 {
-  "name": "RADVD Server",
-  "version": "1.0",
-  "slug": "radvd_addon",
-  "description": "Emit IPv6 Router Advertisements.",
+  "name": "radvd",
+  "version": "0.1.0",
+  "slug": "radvd",
+  "description": "Router Advertisement Daemon (radvd) with DHCPv6",
+  "arch": ["amd64", "armv7", "aarch64", "i386"],
   "startup": "services",
   "boot": "auto",
-  "host_network": true,
-  "arch": ["amd64", "armv7", "armhf", "aarch64"],
   "options": {
-    "prefix": "fd00::/64",
     "interface": "eno1",
-    "log_level": "error"
+    "prefix": "fc00::/64",
+    "log_level": "warning",
+    "dhcp_enabled": false,
+    "dhcp_range_start": "fc00::100",
+    "dhcp_range_end": "fc00::1ff",
+    "dhcp_reservations": {}
   },
   "schema": {
-    "prefix": "str",
-    "interface": "str",
-    "log_level": "list(none|error|warning|info|debug)"
+    "interface": "string?",
+    "prefix": "string?",
+    "log_level": "string?",
+    "dhcp_enabled": "bool?",
+    "dhcp_range_start": "string?",
+    "dhcp_range_end": "string?",
+    "dhcp_reservations": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
   }
 }
-
