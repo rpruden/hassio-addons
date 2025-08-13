@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "slug": "radvd",
   "description": "Router Advertisement Daemon (radvd) with DHCPv6",
+  "multi_instance": true,
   "arch": ["amd64", "armv7", "aarch64", "i386"],
   "startup": "services",
   "boot": "auto",
