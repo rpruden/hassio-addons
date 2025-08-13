@@ -1,6 +1,6 @@
 {
   "name": "radvd_multi_instance",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "slug": "radvd_multi_instance",
   "description": "Router Advertisement Daemon (radvd) with DHCPv6",
   "multi_instance": true,
@@ -11,21 +11,30 @@
     "interface": "",
     "prefix": "fc00::/64",
     "log_level": "warning",
-    "dhcp_enabled": false,
+    "enable_dhcp": false,
+    "enable_slaac": true,
     "dhcp_range_start": "fc00::100",
     "dhcp_range_end": "fc00::1ff",
-    "dhcp_reservations": {}
+    "dhcpv6_leases": []
   },
   "schema": {
     "interface": "string?",
     "prefix": "string?",
     "log_level": "string?",
-    "dhcp_enabled": "bool?",
+    "enable_dhcp": "bool?",
+    "enable_slaac": "bool?",
     "dhcp_range_start": "string?",
     "dhcp_range_end": "string?",
-    "dhcp_reservations": {
-      "type": "object",
-      "additionalProperties": { "type": "string" }
+    "dhcpv6_leases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mac": { "type": "string" },
+          "ip": { "type": "string" }
+        },
+        "required": ["mac", "ip"]
+      }
     }
   }
 }
