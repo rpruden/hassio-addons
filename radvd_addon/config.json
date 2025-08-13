@@ -1,14 +1,14 @@
 {
-  "name": "radvd",
+  "name": "radvd_multi_instance",
   "version": "0.1.0",
-  "slug": "radvd",
+  "slug": "radvd_multi_instance",
   "description": "Router Advertisement Daemon (radvd) with DHCPv6",
   "multi_instance": true,
   "arch": ["amd64", "armv7", "aarch64", "i386"],
   "startup": "services",
   "boot": "auto",
   "options": {
-    "interface": "eno1",
+    "interface": "",
     "prefix": "fc00::/64",
     "log_level": "warning",
     "dhcp_enabled": false,
