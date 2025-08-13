@@ -1,7 +1,7 @@
 {
-  "name": "radvd_multi_instance",
+  "name": "radvd_addon",
   "version": "1.2.0",
-  "slug": "radvd_multi_instance",
+  "slug": "radvd_addon",
   "description": "Router Advertisement Daemon (radvd) with DHCPv6",
   "multi_instance": true,
   "arch": ["amd64", "armv7", "aarch64", "i386"],
