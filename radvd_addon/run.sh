@@ -2,6 +2,9 @@
 
 mkdir -p /run/radvd
 
+echo "radvd version:"
+radvd --version
+
 PREFIX=$(jq -r '.prefix' /data/options.json)
 INTERFACE=$(jq -r '.interface' /data/options.json)
 LOG_LEVEL=$(jq -r '.log_level' /data/options.json)
