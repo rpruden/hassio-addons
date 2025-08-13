@@ -36,11 +36,11 @@ esac
 # Generate radvd.conf with SLAAC toggled
 cat <<EOF > /etc/radvd.conf
 interface ${INTERFACE} {
-  AdvSendAdvert $( [ "$ENABLE_SLAAC" = "true" ] && echo "on" || echo "off" );
+  AdvSendAdvert on;
   MinRtrAdvInterval 5;
   MaxRtrAdvInterval 20;
   prefix ${PREFIX} {
-    AdvOnLink $( [ "$ENABLE_SLAAC" = "true" ] && echo "on" || echo "off" );
+    AdvOnLink on;
     AdvAutonomous $( [ "$ENABLE_SLAAC" = "true" ] && echo "on" || echo "off" );
   };
 };
