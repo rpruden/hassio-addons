@@ -1,14 +1,13 @@
-FROM ghcr.io/home-assistant/amd64-base-debian:latest
+# Use Alpine-based Home Assistant add-on base image
+FROM ghcr.io/hassio-addons/base-alpine:3.18.0
 
-# Install dependencies
-RUN apt-get update && \
-    apt-get install -y radvd isc-dhcp-server jq bash && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Install dependencies (Alpine uses apk, not apt)
+# NOTE: Using dhcp6-server instead of isc-dhcp-server, which isn’t in Alpine repos
+RUN apk add --no-cache radvd dhcp6-server jq bash
 
-# Copy run script
+# Copy the run script into the container
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
-# Entrypoint
+# Set the script as the container's startup command
 CMD [ "/run.sh" ]
