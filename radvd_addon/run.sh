@@ -42,12 +42,15 @@ interface ${INTERFACE} {
   AdvSendAdvert on;
   MinRtrAdvInterval 5;
   MaxRtrAdvInterval 20;
+  AdvManagedFlag $( [ "$ENABLE_DHCP" = "true" ] && echo "on" || echo "off" );
+  AdvOtherConfigFlag on;
   prefix ${PREFIX} {
     AdvOnLink on;
     AdvAutonomous $( [ "$ENABLE_SLAAC" = "true" ] && echo "on" || echo "off" );
   };
 };
 EOF
+
 
 # Start radvd in foreground with log level
 radvd -n $RADVD_ARGS -C /etc/radvd.conf &
@@ -85,7 +88,8 @@ EOF
 }
 EOF
 
-  dhcpd -6 -cf /etc/dhcpd6.conf $INTERFACE
+  #dhcpd -6 -cf /etc/dhcpd6.conf $INTERFACE
+  dhcpd -6 -cf /etc/dhcpd6.conf $INTERFACE -f -d & DHCPD_PID=$!
 fi
 
 # Wait for radvd process so container stays alive
