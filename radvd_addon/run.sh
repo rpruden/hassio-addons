@@ -37,6 +37,12 @@ case "$LOG_LEVEL" in
 esac
 
 # Generate radvd.conf with SLAAC toggled
+if [ "$ENABLE_SLAAC" = "true" ]; then
+  SLAAC_FLAG="on"
+else
+  SLAAC_FLAG="off"
+fi
+
 cat <<EOF > /etc/radvd.conf
 interface ${INTERFACE} {
   AdvSendAdvert on;
@@ -46,7 +52,7 @@ interface ${INTERFACE} {
   AdvOtherConfigFlag on;
   prefix ${PREFIX} {
     AdvOnLink on;
-    AdvAutonomous $( [ "$ENABLE_SLAAC" = "true" ] && echo "on" || echo "off" );
+    AdvAutonomous ${SLAAC_FLAG};
   };
 };
 EOF
@@ -60,41 +66,22 @@ RADVD_PID=$!
 
 # DHCPd part, starts only if enabled
 if [ "$ENABLE_DHCP" = "true" ]; then
-  # Generate dhcpd6.conf
-  cat <<EOF > /etc/dhcpd6.conf
-default-lease-time 600;
-max-lease-time 7200;
-log-facility local7;
-
-subnet6 ${PREFIX} {
+  # Generate dnsmasq.conf
+  cat <<EOF > /etc/dnsmasq.conf
+interface=${INTERFACE}
+enable-ra
+dhcp-range=${DHCP_RANGE_START},${DHCP_RANGE_END},constructor:${INTERFACE},ra-stateless,64,12h
 EOF
 
-  if [ -n "$DHCP_RANGE_START" ] && [ -n "$DHCP_RANGE_END" ]; then
-    cat <<EOF >> /etc/dhcpd6.conf
-  range6 ${DHCP_RANGE_START} ${DHCP_RANGE_END};
-EOF
-  fi
-
+  # Add DHCPv6 reservations if any
   for lease in $(echo "$LEASES" | jq -c '.[]'); do
     MAC=$(echo "$lease" | jq -r '.mac')
     IP=$(echo "$lease" | jq -r '.ip')
-    cat <<EOF >> /etc/dhcpd6.conf
-  host reserved-${MAC//:/} {
-    hardware ethernet $MAC;
-    fixed-address6 $IP;
-  };
-EOF
+    echo "dhcp-host=$MAC,[${IP}]" >> /etc/dnsmasq.conf
   done
 
-  cat <<EOF >> /etc/dhcpd6.conf
-}
-EOF
-
-echo "===== /etc/dhcpd6.conf ====="  
-cat /etc/dhcpd6.conf  
-
-  #dhcpd -6 -cf /etc/dhcpd6.conf $INTERFACE
-  dhcpd -6 -cf /etc/dhcpd6.conf $INTERFACE -f -d & DHCPD_PID=$!
+  dnsmasq --conf-file=/etc/dnsmasq.conf --no-daemon &
+  DHCPD_PID=$!
 fi
 
 # Wait for radvd process so container stays alive
