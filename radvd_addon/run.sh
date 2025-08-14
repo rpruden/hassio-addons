@@ -10,6 +10,9 @@ INTERFACE=$(jq -r '.interface' /data/options.json)
 LOG_LEVEL=$(jq -r '.log_level' /data/options.json)
 ENABLE_DHCP=$(jq -r '.enable_dhcp // false' /data/options.json)
 ENABLE_SLAAC=$(jq -r '.enable_slaac // true' /data/options.json)
+DHCP_RANGE_START=$(jq -r '.dhcp_range_start // empty' /data/options.json)
+DHCP_RANGE_END=$(jq -r '.dhcp_range_end // empty' /data/options.json)
+LEASES=$(jq -c '.dhcpv6_leases // []' /data/options.json)
 
 # Translate string log level to numeric debug level for radvd
 case "$LOG_LEVEL" in
@@ -48,10 +51,11 @@ EOF
 
 # Start radvd in foreground with log level
 radvd -n $RADVD_ARGS -C /etc/radvd.conf &
+RADVD_PID=$!
 
-# DHCPd part unchanged, starts only if enabled
+# DHCPd part, starts only if enabled
 if [ "$ENABLE_DHCP" = "true" ]; then
-  # Generate dhcpd6.conf (same as before)
+  # Generate dhcpd6.conf
   cat <<EOF > /etc/dhcpd6.conf
 default-lease-time 600;
 max-lease-time 7200;
@@ -82,7 +86,7 @@ EOF
 EOF
 
   dhcpd -6 -cf /etc/dhcpd6.conf $INTERFACE
-else
-  # If DHCP not enabled, just wait on radvd
-  wait
 fi
+
+# Wait for radvd process so container stays alive
+wait $RADVD_PID
