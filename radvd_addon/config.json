@@ -1,6 +1,6 @@
 {
   "name": "RADVD DHCPv6",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "slug": "radvd_addon",
   "description": "Router Advertisement Daemon (radvd) with DHCPv6",
   "startup": "services",
