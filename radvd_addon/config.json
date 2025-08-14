@@ -1,41 +1,20 @@
 {
-  "name": "RADVD DHCPv6",
-  "version": "1.2",
+  "name": "RADVD Server",
+  "version": "1.0",
   "slug": "radvd_addon",
-  "description": "Router Advertisement Daemon (radvd) with DHCPv6",
+  "description": "Emit IPv6 Router Advertisements.",
   "startup": "services",
   "boot": "auto",
   "host_network": true,
-  "multi_instance": true,
-  "arch": ["amd64", "armv7", "armhf", "aarch64", "i386"],
+  "arch": ["amd64", "armv7", "armhf", "aarch64"],
   "options": {
-    "interface": "",
-    "prefix": "fc00::/64",
-    "log_level": "warning",
-    "enable_dhcp": false,
-    "enable_slaac": true,
-    "dhcp_range_start": "fc00::100",
-    "dhcp_range_end": "fc00::1ff",
-    "dhcpv6_leases": []
+    "prefix": "fd00::/64",
+    "interface": "eno1",
+    "log_level": "error"
   },
   "schema": {
-    "interface": "str",
     "prefix": "str",
+    "interface": "str",
     "log_level": "list(none|error|warning|info|debug)"
-    "enable_dhcp": "bool",
-    "enable_slaac": "bool",
-    "dhcp_range_start": "str?",
-    "dhcp_range_end": "str?",
-    "dhcpv6_leases": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "mac": { "type": "str" },
-          "ip": { "type": "str" }
-        },
-        "required": ["mac", "ip"]
-      }
-    }
   }
 }
