@@ -6,6 +6,7 @@
   "startup": "services",
   "boot": "auto",
   "host_network": true,
+  "multi_instance": true,
   "arch": ["amd64", "armv7", "armhf", "aarch64"],
   "options": {
     "prefix": "fd00::/64",
