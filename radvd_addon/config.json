@@ -25,17 +25,6 @@
     "enable_dhcp": "bool",
     "enable_slaac": "bool",
     "dhcp_range_start": "str?",
-    "dhcp_range_end": "str?",
-    "dhcpv6_leases": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "mac": { "type": "str" },
-          "ip": { "type": "str" }
-        },
-        "required": ["mac", "ip"]
-      }
-    }
+    "dhcp_range_end": "str?"
   }
 }
