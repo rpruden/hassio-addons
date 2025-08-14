@@ -8,6 +8,7 @@
   "host_network": true,
   "multi_instance": true,
   "arch": ["amd64", "armv7", "armhf", "aarch64", "i386"],
+  "privileged": ["NET_ADMIN"],
   "options": {
     "interface": "",
     "prefix": "fc00::/64",
