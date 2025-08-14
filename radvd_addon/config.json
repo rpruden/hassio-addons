@@ -1,13 +1,13 @@
 {
   "name": "RADVD DHCPv6",
-  "version": "1.1",
+  "version": "1.1.0",
   "slug": "radvd_addon",
   "description": "Router Advertisement Daemon (radvd) with DHCPv6",
   "startup": "services",
   "boot": "auto",
   "host_network": true,
   "multi_instance": true,
-  "arch": ["amd64", "armv7", "armhf", "aarch64"],
+  "arch": ["amd64", "armv7", "armhf", "aarch64", "i386"],
   "options": {
     "prefix": "fd00::/64",
     "interface": "eno1",
