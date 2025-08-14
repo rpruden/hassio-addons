@@ -37,7 +37,8 @@ case "$LOG_LEVEL" in
 esac
 
 # Generate radvd.conf with SLAAC toggled
-if [ "$ENABLE_SLAAC" = "true" ]; then
+ENABLE_SLAAC_RAW=$(jq -r '.enable_slaac // true' /data/options.json)
+if [ "$ENABLE_SLAAC_RAW" = "true" ]; then
   SLAAC_FLAG="on"
 else
   SLAAC_FLAG="off"
@@ -77,6 +78,7 @@ if [ "$ENABLE_DHCP" = "true" ]; then
 interface=${INTERFACE}
 enable-ra
 dhcp-range=${DHCP_RANGE_START},${DHCP_RANGE_END},ra-stateless,64,12h
+ra-names
 EOF
 
   # Add DHCPv6 reservations if any
