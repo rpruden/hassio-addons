@@ -1,6 +1,6 @@
 {
   "name": "RADVD DHCPv6",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "slug": "radvd_addon",
   "description": "Router Advertisement Daemon (radvd) with DHCPv6",
   "startup": "services",
@@ -19,8 +19,23 @@
     "dhcpv6_leases": []
   },
   "schema": {
-    "prefix": "str",
     "interface": "str",
-    "log_level": "list(none|error|warning|info|debug)"
+    "prefix": "str",
+    "log_level": "list(none|error|warning|info|debug)",
+    "enable_dhcp": "bool",
+    "enable_slaac": "bool",
+    "dhcp_range_start": "str?",
+    "dhcp_range_end": "str?",
+    "dhcpv6_leases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mac": { "type": "str" },
+          "ip": { "type": "str" }
+        },
+        "required": ["mac", "ip"]
+      }
+    }
   }
 }
