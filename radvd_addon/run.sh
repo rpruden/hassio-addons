@@ -77,8 +77,9 @@ if [ "$ENABLE_DHCP" = "true" ]; then
   cat <<EOF > /etc/dnsmasq.conf
 interface=${INTERFACE}
 enable-ra
-dhcp-range=${DHCP_RANGE_START},${DHCP_RANGE_END},ra-stateless,64,12h
+ra-stateless
 ra-names
+dhcp-range=${DHCP_RANGE_START},${DHCP_RANGE_END},64,12h
 EOF
 
   # Add DHCPv6 reservations if any
