@@ -1,8 +1,8 @@
 {
-  "name": "RADVD Server",
-  "version": "1.0",
+  "name": "RADVD DHCPv6",
+  "version": "1.1",
   "slug": "radvd_addon",
-  "description": "Emit IPv6 Router Advertisements.",
+  "description": "Router Advertisement Daemon (radvd) with DHCPv6",
   "startup": "services",
   "boot": "auto",
   "host_network": true,
