@@ -91,9 +91,10 @@ EOF
 echo "===== /etc/dnsmasq.conf ====="  
 cat /etc/dnsmasq.conf  
 
-  dnsmasq --conf-file=/etc/dnsmasq.conf --no-daemon &
-  DHCPD_PID=$!
+  dnsmasq --no-resolv --no-hosts --port=0 --conf-file=/etc/dnsmasq.conf --no-daemon &
+  DNSMASQ_PID=$!
 fi
 
 # Wait for radvd process so container stays alive
 wait $RADVD_PID
+wait $DNSMASQ_PID
