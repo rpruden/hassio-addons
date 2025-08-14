@@ -13,7 +13,7 @@
     "prefix": "fc00::/64",
     "log_level": "warning",
     "enable_dhcp": false,
-    "enable_slaac": true,
+    "enable_slaac": false,
     "dhcp_range_start": "fc00::100",
     "dhcp_range_end": "fc00::1ff",
     "dhcpv6_leases": []
