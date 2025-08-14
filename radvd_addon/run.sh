@@ -51,6 +51,8 @@ interface ${INTERFACE} {
 };
 EOF
 
+echo "===== /etc/radvd.conf ====="  
+cat /etc/radvd.conf  
 
 # Start radvd in foreground with log level
 radvd -n $RADVD_ARGS -C /etc/radvd.conf &
@@ -87,6 +89,9 @@ EOF
   cat <<EOF >> /etc/dhcpd6.conf
 }
 EOF
+
+echo "===== /etc/dhcpd6.conf ====="  
+cat /etc/dhcpd6.conf  
 
   #dhcpd -6 -cf /etc/dhcpd6.conf $INTERFACE
   dhcpd -6 -cf /etc/dhcpd6.conf $INTERFACE -f -d & DHCPD_PID=$!
