@@ -1,6 +1,7 @@
 #FROM ghcr.io/hassio-addons/base-alpine:3.18.0
-ARG BUILD_FROM=ghcr.io/hassio-addons/base-alpine:3.18.0
-FROM ${BUILD_FROM}
+#ARG BUILD_FROM=ghcr.io/hassio-addons/base-alpine:3.18.0
+#FROM ${BUILD_FROM}
+FROM alpine:latest
 
 # Install dependencies
 RUN apk add --no-cache radvd dnsmasq jq bash
