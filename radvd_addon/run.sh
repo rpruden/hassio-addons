@@ -43,12 +43,18 @@ else
   SLAAC_FLAG="off"
 fi
 
+if [ "$ENABLE_DHCP" = "true" ]; then
+  MANAGED_FLAG="on"
+else
+  MANAGED_FLAG="off"
+fi
+
 cat <<EOF > /etc/radvd.conf
 interface ${INTERFACE} {
   AdvSendAdvert on;
   MinRtrAdvInterval 5;
   MaxRtrAdvInterval 20;
-  AdvManagedFlag $( [ "$ENABLE_DHCP" = "true" ] && echo "on" || echo "off" );
+  AdvManagedFlag ${MANAGED_FLAG};
   AdvOtherConfigFlag on;
   prefix ${PREFIX} {
     AdvOnLink on;
@@ -70,7 +76,7 @@ if [ "$ENABLE_DHCP" = "true" ]; then
   cat <<EOF > /etc/dnsmasq.conf
 interface=${INTERFACE}
 enable-ra
-dhcp-range=${DHCP_RANGE_START},${DHCP_RANGE_END},constructor:${INTERFACE},ra-stateless,64,12h
+dhcp-range=${DHCP_RANGE_START},${DHCP_RANGE_END},ra-stateless,64,12h
 EOF
 
   # Add DHCPv6 reservations if any
@@ -79,6 +85,9 @@ EOF
     IP=$(echo "$lease" | jq -r '.ip')
     echo "dhcp-host=$MAC,[${IP}]" >> /etc/dnsmasq.conf
   done
+
+echo "===== /etc/dnsmasq.conf ====="  
+cat /etc/dnsmasq.conf  
 
   dnsmasq --conf-file=/etc/dnsmasq.conf --no-daemon &
   DHCPD_PID=$!
