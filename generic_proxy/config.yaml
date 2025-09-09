@@ -29,7 +29,7 @@ options:
   proxy_pass_host: true
   proxy_pass_real_ip: true
 schema:
-  server: "match(^https?://.+(:\d+)?$)"
+  server: "match(^https?://.+:\\d+$)"
   proxy_pass_host: bool
   proxy_pass_real_ip: bool
 services: []
