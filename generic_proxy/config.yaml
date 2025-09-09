@@ -1,5 +1,5 @@
 name: Generic Proxy
-version: 1.0
+version: 1.1
 panel_icon: "mdi:server-network-outline"
 panel_title: Nginx Proxy Manager
 slug: generic-proxy
