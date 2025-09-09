@@ -1,23 +1,23 @@
-name: Frigate Proxy
-version: 1.6
-panel_icon: "mdi:cctv"
-panel_title: Frigate
-slug: frigate-proxy
-description: Proxy addon for Frigate
-url: "https://github.com/blakeblackshear/frigate"
+name: Generic Proxy
+version: 1.0
+panel_icon: "mdi:server-network-outline"
+panel_title: Nginx Proxy Manager
+slug: generic-proxy
+description: Generic Proxy addon
+url: "https://github.com/rpruden/hassio-addons/"
 startup: application
 boot: auto
 init: false
-webui: "http://[HOST]:[PORT:5000]/"
-watchdog: "http://[HOST]:[PORT:5000]/"
+webui: "http://[HOST]:[PORT:5500]/"
+watchdog: "http://[HOST]:[PORT:5500]/"
 ingress: true
-ingress_port: 5000
+ingress_port: 5500
 ingress_entry: /
 panel_admin: false
 ports:
-  5000/tcp: 5000
+  5500/tcp: 5500
 ports_description:
-  5000/tcp: Web interface (not required for Home Assistant Ingress)
+  5500/tcp: Web interface (not required for Home Assistant Ingress)
 host_network: false
 devices: []
 usb: false
@@ -25,7 +25,7 @@ tmpfs: false
 full_access: false
 environment: {}
 options:
-  server: "http://frigate.local:5000"
+  server: "http://server.local:5500"
   proxy_pass_host: true
   proxy_pass_real_ip: true
 schema:
