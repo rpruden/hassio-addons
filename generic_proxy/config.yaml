@@ -1,5 +1,5 @@
 name: Generic Proxy
-version: 1.2.1
+version: 1.2.2
 panel_icon: "mdi:server-network-outline"
 panel_title: Nginx Proxy Manager
 slug: generic-proxy
@@ -29,7 +29,7 @@ options:
   proxy_pass_host: true
   proxy_pass_real_ip: true
 schema:
-  server: "match(^https?://.+:\\d+$)"
+  server: "^https?://.+(:\d+)?$"
   proxy_pass_host: bool
   proxy_pass_real_ip: bool
 services: []
